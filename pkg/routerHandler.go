@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/julienschmidt/httprouter"
-	"github.com/mttpla/serverino/pkg/utils"
+	"github.com/mttpla/serverino/pkg/util"
 	"net/http"
 )
 

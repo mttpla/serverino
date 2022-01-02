@@ -7,14 +7,18 @@ import (
 )
 
 type Config struct {
-	PORT string
+	Port string `mapstructure:"PORT"`
 }
+
+var (
+	Configuration Config
+)
 
 func SetDefault() {
 	viper.SetDefault("PORT", "8080")
 }
 
-func LoadConfig() (config Config) {
+func LoadConfig() {
 	viper.AddConfigPath(".")
 	viper.AddConfigPath("./cmd/")
 	viper.SetConfigName("config")
@@ -27,6 +31,5 @@ func LoadConfig() (config Config) {
 	if err != nil {
 		Error.Println("Failed to read the config file! Keep Default values.")
 	}
-	viper.Unmarshal(&config)
-	return config
+	viper.Unmarshal(&Configuration)
 }
