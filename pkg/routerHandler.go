@@ -10,19 +10,11 @@ import (
 	"net/http"
 )
 
-//ServerInfo info printed in / page
-type ServerInfo struct {
-	Name    string `json:",omitempty"`
-	Surname string `json:",omitempty"`
-}
-
-var serverInfo = ServerInfo{Name: "Matteo", Surname: "Paoli"}
-
 //HomeHandler main path
 func HomeHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	serverInfoJSON, _ := json.Marshal(serverInfo)
+	serverInfoJSON := util.ServerInfoJson()
 	w.Write([]byte(string(serverInfoJSON)))
 }
 

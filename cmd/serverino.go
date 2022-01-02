@@ -15,10 +15,10 @@ import (
 func main() {
 	util.LogInit(ioutil.Discard, os.Stdout, os.Stdout, os.Stderr)
 	config := util.LoadConfig()
-    
 	router := httprouter.New()
 	router.GET("/", pkg.HomeHandler)
 	router.NotFound = http.HandlerFunc(pkg.NotFound)
+	util.Info.Println("Serverino: " + util.ServerVersion() + ".")
 	util.Info.Println("Started on port " + config.PORT + ".")
-	log.Fatal(http.ListenAndServe(":"+ config.PORT, router))
+	log.Fatal(http.ListenAndServe(":"+config.PORT, router))
 }
