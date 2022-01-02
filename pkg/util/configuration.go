@@ -7,7 +7,8 @@ import (
 )
 
 type Config struct {
-	Port string `mapstructure:"PORT"`
+	Port     string `mapstructure:"PORT"`
+	LogLevel string `mapstructure:"LOG_LEVEL"`
 }
 
 var (
@@ -16,6 +17,7 @@ var (
 
 func SetDefault() {
 	viper.SetDefault("PORT", "8080")
+	viper.SetDefault("LOG_LEVEL", "ERROR")
 }
 
 func LoadConfig() {

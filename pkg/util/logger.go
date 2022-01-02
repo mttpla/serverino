@@ -4,7 +4,9 @@ package util
 
 import (
 	"io"
+	"io/ioutil"
 	"log"
+	"os"
 )
 
 var (
@@ -18,8 +20,24 @@ var (
 	Error *log.Logger
 )
 
-//LogInit helpfull
-func LogInit(
+func LogInit() {
+	logLevel := Configuration.LogLevel
+	switch logLevel {
+	case "TRACE":
+		logSettings(os.Stdout, os.Stdout, os.Stdout, os.Stderr)
+	case "INFO":
+		logSettings(ioutil.Discard, os.Stdout, os.Stdout, os.Stderr)
+	case "WARNING":
+		logSettings(ioutil.Discard, ioutil.Discard, os.Stdout, os.Stderr)
+	case "ERROR":
+		logSettings(ioutil.Discard, ioutil.Discard, ioutil.Discard, os.Stderr)
+	default:
+		logSettings(ioutil.Discard, os.Stdout, os.Stdout, os.Stderr)
+	}
+	Trace.Println("LogLevel: ", logLevel)
+}
+
+func logSettings(
 	traceHandle io.Writer,
 	infoHandle io.Writer,
 	warningHandle io.Writer,
