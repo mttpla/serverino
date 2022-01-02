@@ -15,16 +15,19 @@ type ServerInfo struct {
 }
 
 var (
-	serverInfo ServerInfo
+	serverInfo         ServerInfo
+	FlagCommitHash     = "n/a"
+	FlagBuildTimestamp = "n/a"
+	FlagGitDescribe    = "n/a"
 )
 
 func init() {
 	serverInfo = ServerInfo{
 		Name:           "Serverino",
 		Author:         "Matteo Paoli",
-		CommitHash:     "n/a",
-		BuildTimestamp: "n/a",
-		GitDescribe:    "n/a",
+		CommitHash:     FlagCommitHash,
+		BuildTimestamp: FlagBuildTimestamp,
+		GitDescribe:    FlagGitDescribe,
 	}
 }
 

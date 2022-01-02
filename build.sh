@@ -6,10 +6,10 @@ BUILD_TIMESTAMP=$(date '+%Y-%m-%dT%H:%M:%S')
 GIT_DESCRIBE="$(git describe --always)"
 
 LDFLAGS=(
-  "-X '${PACKAGE}.CommitHash=${COMMIT_HASH}'"
-  "-X '${PACKAGE}.BuildTimestamp=${BUILD_TIMESTAMP}'"
-  "-X '${PACKAGE}.GitDescribe=${GIT_DESCRIBE}'"
+  "-X '${PACKAGE}.FlagCommitHash=${COMMIT_HASH}'"
+  "-X '${PACKAGE}.FlagBuildTimestamp=${BUILD_TIMESTAMP}'"
+  "-X '${PACKAGE}.FlagGitDescribe=${GIT_DESCRIBE}'"
 )
 
-go fmt -s -w .
+gofmt -s -w .
 go build -ldflags="${LDFLAGS[*]}" -o serverino.out ./cmd/serverino.go
